@@ -89,8 +89,8 @@ interface ElevatorCache {
  *                 └── floor_<n>_<metric> endpoints
  *
  * Structural nodes (device, floors group, per-floor groups) are attached with
- * addChildInContext; endpoints are attached with addChild
- * (createNewBmsEndpointWithoutContext).
+ * addChildInContext; endpoints are attached with addChildInContext as well
+ * (createNewBmsEndpoint).
  *
  * Time-series are injected with an explicit per-bucket timestamp so that a
  * configurable history can be backfilled on first start.
@@ -572,7 +572,7 @@ export class SyncService {
       InputDataEndpointDataType.Real,
       InputDataEndpointType.Other
     );
-    const ref = await this.nwService.createNewBmsEndpointWithoutContext(parent.getId().get(), model);
+    const ref = await this.nwService.createNewBmsEndpoint(parent.getId().get(), model);
     return SpinalGraphService.getRealNode(ref.id.get());
   }
 
